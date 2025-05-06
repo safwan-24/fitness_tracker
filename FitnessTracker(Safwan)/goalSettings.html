@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fitness Tracker - Goal Settings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <table class="main-table">
+    <tr>
+      <td colspan="2" class="logo-cell">
+        <div class="logo-text">Fitness Tracker</div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="form-cell">
+        <form id="goalForm" class="auth-form">
+          <h2>Set Your Fitness Goals</h2>
+          <table class="form-table">
+            <tr>
+              <td>Goal Type:</td>
+              <td>
+                <select name="goalType" id="goalType">
+                  <option value="">Select a goal</option>
+                  <option value="weight_loss">Weight Loss</option>
+                  <option value="muscle_gain">Muscle Gain</option>
+                  <option value="endurance">Endurance</option>
+                  <option value="flexibility">Flexibility</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Target (e.g., 5kg, 10km):</td>
+              <td><input type="text" name="target" id="target" /></td>
+            </tr>
+            <tr>
+              <td>Time Frame (weeks):</td>
+              <td><input type="number" name="timeFrame" id="timeFrame" min="1" /></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center;">
+                <button type="submit">Save Goal</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    window.onload = function () {
+      const goalForm = document.getElementById("goalForm");
+
+      if (goalForm) {
+        goalForm.onsubmit = function (e) {
+          e.preventDefault();
+
+          const goalType = document.getElementById("goalType").value;
+          const target = document.getElementById("target").value.trim();
+          const timeFrame = document.getElementById("timeFrame").value.trim();
+
+          if (!goalType || !target || !timeFrame) {
+            alert("Please fill in all fields.");
+            return false;
+          }
+
+          if (isNaN(timeFrame) || timeFrame <= 0) {
+            alert("Please enter a valid time frame.");
+            return false;
+          }
+
+          alert("Goal saved successfully! (Demo only)");
+        };
+      }
+    };
+  </script>
+</body>
+</html>
