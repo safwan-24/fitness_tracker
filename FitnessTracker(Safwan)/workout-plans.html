@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workout Plans</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="logo-text">Fitness Tracker</div>
+  <div class="program-title">Choose Your Program</div>
+
+  <div class="button-group">
+    <button onclick="generateWeeks(4)">4 Weeks</button>
+    <button onclick="generateWeeks(8)">8 Weeks</button>
+    <button onclick="generateWeeks(12)">12 Weeks</button>
+  </div>
+
+  <div class="workout-options">
+    <h3>Workout Options (Drag into days)</h3>
+    <div class="draggables" id="draggables">
+      <div class="draggable" draggable="true">Cardio</div>
+      <div class="draggable" draggable="true">Strength</div>
+      <div class="draggable" draggable="true">Yoga</div>
+      <div class="draggable" draggable="true">Rest</div>
+    </div>
+  </div>
+
+  <div id="weeksContainer"></div>
+
+  <button class="save-btn" onclick="savePlan()">Save Plan</button>
+
+  <script src="workout-script.js"></script>
+</body>
+</html>

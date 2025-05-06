@@ -1,0 +1,340 @@
+/* Base setup */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Logo styling */
+.logo-text {
+  font-size: 40px;
+  color: red;
+  text-shadow: 0 0 10px red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Titles */
+.program-title,
+.auth-form h2 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Main form container */
+.main-table {
+  height: 100vh;
+  width: 100%;
+  display: table;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.logo-cell,
+.form-cell {
+  padding: 20px;
+}
+
+.auth-form {
+  display: inline-block;
+  background-color: #111;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+/* Table inside form */
+.form-table {
+  width: 100%;
+  color: #fff;
+}
+
+.form-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+/* Form links */
+.form-links {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+/* --- Workout Planner Specific Styles --- */
+
+/* Program selection buttons */
+.button-group {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.button-group button {
+  margin: 0 10px;
+}
+
+/* Draggable items */
+.draggables {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.draggable {
+  background-color: #222;
+  color: red;
+  padding: 10px 15px;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+.draggable:hover {
+  background-color: #333;
+}
+
+/* Week container */
+#weeksContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Week box */
+.week {
+  background-color: #111;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;
+}
+
+/* Day inside week */
+.day {
+  background-color: #222;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px dashed red;
+  border-radius: 5px;
+  min-height: 40px;
+  color: #fff;
+}
+
+/* friend challenge*/
+
+/* Friend Challenges Specific Styles */
+.challenge-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #111;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.leaderboard {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard li {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #222;
+  border-radius: 5px;
+  border-left: 3px solid red;
+}
+
+.cheer-feed {
+  margin-top: 15px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.cheer-feed p {
+  padding: 8px;
+  background-color: #222;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+/*device sync */
+
+/* Device Sync Specific Styles */
+.sync-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #111;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+.device-list {
+  margin-top: 15px;
+}
+
+.device-list div {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #222;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.device-list div:hover {
+  background-color: #333;
+}
+
+.sync-status {
+  padding: 10px;
+  background-color: #222;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  min-height: 50px;
+}
+
+.sync-status.connected {
+  border-left: 3px solid #00ff00;
+}
+
+.sync-status.disconnected {
+  border-left: 3px solid red;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: red;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 0%;
+  transition: width 0.5s;
+}
+
+
+/* Nutrition Logging Specific Styles */
+.nutrition-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #111;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+.macro-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.input-field.small {
+  padding: 8px;
+}
+
+.scan-result {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #222;
+  border-radius: 5px;
+  min-height: 20px;
+}
+
+.macro-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.macro-circle {
+  background-color: #222;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid red;
+}
+
+.macro-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+.macro-target {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.food-log {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.food-log div {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #222;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.food-log div span {
+  color: red;
+}
