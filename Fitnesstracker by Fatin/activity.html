@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fitness Tracker - Activity Logs</title>
+  <link rel="stylesheet" href="activity.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <table class="main-table">
+    <tr>
+      <td colspan="2" class="logo-cell">
+        <div class="logo-text">Fitness Tracker</div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="content-cell">
+        <div class="logs-container">
+          <h2>Activity Logs</h2>
+          <div class="filters">
+            <select id="date-filter">
+              <option value="all">All Dates</option>
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+            </select>
+            <select id="user-filter">
+              <option value="all">All Users</option>
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+            </select>
+            <button id="apply-filters">Apply Filters</button>
+            <button id="export-logs">Export Logs</button>
+          </div>
+          
+          <table class="logs-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="logs-list">
+              <!-- Logs will be populated here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <script src="activity.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+     color: red;
+      
+    background: #141010;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 700px;
+    margin: auto;
+    background: rgb(16, 9, 9);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: 400px !important;
+  }
+  

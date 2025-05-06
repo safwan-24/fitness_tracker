@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Body Measurements</title>
+  <link rel="stylesheet" href="body.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Body Measurements</h1>
+    <form id="measureForm">
+      <label>Weight (kg): <input type="number" id="weight" required></label><br>
+      <label>Waist (cm): <input type="number" id="waist" required></label><br>
+      <label>Chest (cm): <input type="number" id="chest" required></label><br>
+      <button type="submit">Save</button>
+    </form>
+    <h2>Measurement History</h2>
+    <ul id="history"></ul>
+  </div>
+
+  <script src="body.js"></script>
+</body>
+</html>
