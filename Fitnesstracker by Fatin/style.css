@@ -1,73 +1,63 @@
-.logo-text {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 40px;
-  color: red;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
 body {
-  background-color: black;
-  color: white;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.main-table {
-  width: 100%;
-  height: 100vh;
-  border-collapse: collapse;
-}
-
-.logo-cell {
-  text-align: center;
-  padding: 30px 0 10px 0;
-}
-
-.form-cell {
-  text-align: center;
-  vertical-align: top;
-}
-
-.auth-form {
-  display: inline-block;
+  background: #111;
+  color: #eee;
   padding: 20px;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  box-shadow: 0 0 10px red;
 }
 
-.auth-form h2 {
-  margin-bottom: 20px;
-  color: white;
-}
-
-.form-table {
+.container {
+  max-width: 500px;
   margin: auto;
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+h1, h2 {
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 40px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #ccc;
 }
 
 input[type="text"],
 input[type="email"],
+input[type="password"],
 input[type="file"] {
-  width: 200px;
-  padding: 8px;
-  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
   border: none;
-  outline: none;
-  background-color: #333;
+  border-radius: 6px;
+  background: #333;
   color: white;
 }
 
 button {
+  margin-top: 15px;
   padding: 10px 20px;
-  background-color: red;
+  background: #ff4d4d;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: darkred;
+  background: #e03a3a;
+}
+
+.error {
+  color: #ff8080;
+  font-size: 13px;
 }

@@ -1,10 +1,45 @@
-// Image Preview
-document.getElementById('avatarInput').addEventListener('change', function (event) {
-  const file = event.target.files[0];
+// Validate Edit Profile
+document.getElementById('editProfileForm').addEventListener('submit', function (e) {
+  let valid = true;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+
+  nameError.textContent = '';
+  emailError.textContent = '';
+
+  if (name === '') {
+    nameError.textContent = 'Name is required.';
+    valid = false;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    emailError.textContent = 'Please enter a valid email.';
+    valid = false;
+  }
+
+  if (!valid) e.preventDefault();
+});
+
+// Avatar upload preview
+document.getElementById('avatar').addEventListener('change', function () {
+  const file = this.files[0];
+  const preview = document.getElementById('avatarPreview');
+  const error = document.getElementById('avatarError');
+  error.textContent = '';
+
   if (file) {
+    if (!file.type.startsWith('image/')) {
+      error.textContent = 'Only image files are allowed.';
+      this.value = '';
+      preview.style.display = 'none';
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = function (e) {
-      const preview = document.getElementById('avatarPreview');
       preview.src = e.target.result;
       preview.style.display = 'block';
     };
@@ -12,50 +47,26 @@ document.getElementById('avatarInput').addEventListener('change', function (even
   }
 });
 
-// Form Validation and Submission
-document.getElementById('editProfileForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+// Validate Password Update
+document.getElementById('passwordForm').addEventListener('submit', function (e) {
+  const current = document.getElementById('currentPassword').value.trim();
+  const newPass = document.getElementById('newPassword').value.trim();
+  const confirmPass = document.getElementById('confirmPassword').value.trim();
+  const error = document.getElementById('passwordError');
 
-  const fullName = document.getElementById('fullname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const fileInput = document.getElementById('avatarInput');
-  const errorElem = document.getElementById('formError');
+  error.textContent = '';
+  let valid = true;
 
-  // Reset error message
-  errorElem.textContent = "";
-
-  // Basic validation
-  if (fullName === "" || email === "") {
-    errorElem.textContent = "Full name and email are required.";
-    return;
+  if (!current || !newPass || !confirmPass) {
+    error.textContent = 'All password fields are required.';
+    valid = false;
+  } else if (newPass.length < 6) {
+    error.textContent = 'New password must be at least 6 characters.';
+    valid = false;
+  } else if (newPass !== confirmPass) {
+    error.textContent = 'Passwords do not match.';
+    valid = false;
   }
 
-  // Email pattern validation
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    errorElem.textContent = "Please enter a valid email address.";
-    return;
-  }
-
-  // Optional: validate image file type and size
-  const file = fileInput.files[0];
-  if (file) {
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-    const maxSize = 2 * 1024 * 1024; // 2MB
-
-    if (!allowedTypes.includes(file.type)) {
-      errorElem.textContent = "Only JPG, PNG, or GIF files are allowed.";
-      return;
-    }
-
-    if (file.size > maxSize) {
-      errorElem.textContent = "Image must be less than 2MB.";
-      return;
-    }
-  }
-
-  // If all validation passes
-  alert("Profile updated successfully!");
-  this.reset();
-  document.getElementById('avatarPreview').style.display = 'none';
+  if (!valid) e.preventDefault();
 });

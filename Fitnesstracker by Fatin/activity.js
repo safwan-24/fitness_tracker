@@ -1,108 +1,71 @@
-// Sample activity logs data
-const activityLogs = [
-    {
-      timestamp: '2025-05-06 09:15:23',
-      user: 'admin',
-      action: 'login',
-      details: 'User logged in successfully'
-    },
-    {
-      timestamp: '2025-05-06 10:30:45',
-      user: 'member',
-      action: 'workout',
-      details: 'Completed 30-minute cardio session'
-    },
-    {
-      timestamp: '2025-05-05 14:22:33',
-      user: 'admin',
-      action: 'update',
-      details: 'Updated system settings'
-    },
-    {
-      timestamp: '2025-05-05 16:45:10',
-      user: 'member',
-      action: 'profile',
-      details: 'Updated profile information'
-    }
-  ];
-  
-  // DOM elements
-  const logsList = document.getElementById('logs-list');
-  const dateFilter = document.getElementById('date-filter');
-  const userFilter = document.getElementById('user-filter');
-  const applyFiltersBtn = document.getElementById('apply-filters');
-  const exportLogsBtn = document.getElementById('export-logs');
-  
-  // Initialize
-  renderLogs(activityLogs);
-  
-  // Event listeners
-  applyFiltersBtn.addEventListener('click', applyFilters);
-  exportLogsBtn.addEventListener('click', exportLogs);
-  
-  // Render logs function
-  function renderLogs(logs) {
-    logsList.innerHTML = '';
-    
-    if (logs.length === 0) {
-      logsList.innerHTML = '<tr><td colspan="4" style="text-align: center;">No activity logs found</td></tr>';
-      return;
-    }
-    
-    logs.forEach(log => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${log.timestamp}</td>
-        <td>${log.user}</td>
-        <td>${log.action}</td>
-        <td>${log.details}</td>
-      `;
-      logsList.appendChild(row);
-    });
+// activity.js
+
+function clearErrors() {
+  document.querySelectorAll('.error-msg').forEach(el => el.remove());
+}
+
+function showError(inputEl, message) {
+  const err = document.createElement('div');
+  err.className = 'error-msg';
+  err.style.color = 'red';
+  err.style.fontSize = '0.9em';
+  err.textContent = message;
+  inputEl.parentNode.appendChild(err);
+}
+
+function validateForm() {
+  clearErrors();
+
+  const dateEl   = document.getElementById('logDate');
+  const userEl   = document.getElementById('logUser');
+  const actionEl = document.getElementById('logAction');
+
+  let valid = true;
+  const today = new Date().toISOString().split('T')[0];
+
+  // Date validation: optional, but if filled must NOT be in the future
+  if (dateEl.value && dateEl.value > today) {
+    showError(dateEl, 'Date cannot be in the future.');
+    valid = false;
   }
-  
-  // Apply filters function
-  function applyFilters() {
-    const dateValue = dateFilter.value;
-    const userValue = userFilter.value;
-    
-    const filteredLogs = activityLogs.filter(log => {
-      // Date filter
-      if (dateValue === 'today') {
-        const today = new Date().toISOString().split('T')[0];
-        if (!log.timestamp.startsWith(today)) return false;
-      } else if (dateValue === 'week') {
-        const logDate = new Date(log.timestamp);
-        const today = new Date();
-        const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
-        if (logDate < startOfWeek) return false;
-      }
-      
-      // User filter
-      if (userValue !== 'all' && log.user !== userValue) return false;
-      
-      return true;
-    });
-    
-    renderLogs(filteredLogs);
+
+  // User validation: required and alphanumeric (letters, numbers, underscore)
+  if (!userEl.value.trim()) {
+    showError(userEl, 'Username is required.');
+    valid = false;
+  } else if (!/^\w+$/.test(userEl.value.trim())) {
+    showError(userEl, 'Username must be alphanumeric.');
+    valid = false;
   }
-  
-  // Export logs function
-  function exportLogs() {
-    const headers = ['Timestamp', 'User', 'Action', 'Details'];
-    const csvContent = [
-      headers.join(','),
-      ...activityLogs.map(log => 
-        `${log.timestamp},${log.user},${log.action},"${log.details}"`
-      )
-    ].join('\n');
-    
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'activity_logs.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+  // Action validation: required and letters only
+  if (!actionEl.value.trim()) {
+    showError(actionEl, 'Action type is required.');
+    valid = false;
+  } else if (!/^[A-Za-z]+$/.test(actionEl.value.trim())) {
+    showError(actionEl, 'Action type must contain letters only.');
+    valid = false;
   }
+
+  return valid;
+}
+
+function filterLogs() {
+  if (!validateForm()) return;
+
+  // Your filtering logic here...
+  alert('Filters applied (this is a placeholder)');
+}
+
+function exportLogs() {
+  if (!validateForm()) return;
+
+  // Your export logic here...
+  alert('Export started (this is a placeholder)');
+}
+
+// Optional: Attach event listeners programmatically instead of inline onclick
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.form-buttons button:nth-child(1)').onclick = filterLogs;
+  document.querySelector('.form-buttons button:nth-child(2)').onclick = exportLogs;
+});

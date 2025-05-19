@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location:   login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +34,7 @@
       <button type="submit">Save Session</button>
     </form>
 
-    <div class="summary">
-      <h2>Session Summary</h2>
-      <ul id="sessionList"></ul>
-    </div>
+ 
   </div>
 
   <script src="workoutlog.js"></script>
