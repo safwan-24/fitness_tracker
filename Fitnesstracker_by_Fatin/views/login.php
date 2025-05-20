@@ -38,7 +38,7 @@ if (isset($_SESSION['email'])) {
               <td colspan="2" class="form-links">
                 <a href="forgotpassword.html">Forgot password?</a><br />
                 Don't have an account? <a href="signup.html">Sign up</a>
-                <a href="admin-login.html">Admin-Login?</a><br />
+                <a href="admin-login.php">Admin-Login?</a><br />
               </td>
             </tr>
           </table>

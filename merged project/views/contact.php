@@ -1,0 +1,61 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location:   login.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fitness Tracker - Contact Us</title>
+  <link rel="stylesheet" href="../assets/styles/contact.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <table class="main-table">
+    <tr>
+      <td colspan="2" class="logo-cell">
+        <div class="logo-text">Fitness Tracker</div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="form-cell">
+        <form id="contactForm" class="auth-form" novalidate>
+          <h2>Contact Us</h2>
+          <table class="form-table">
+            <tr>
+              <td><label for="name">Name:</label></td>
+              <td><input type="text" id="name" name="name" required /></td>
+            </tr>
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input type="email" id="email" name="email" required /></td>
+            </tr>
+            <tr>
+              <td><label for="message">Message:</label></td>
+              <td><textarea id="message" name="message" rows="4" required></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: center;">
+                <input type="checkbox" id="notRobot" required />
+                <label for="notRobot">I'm not a robot</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: center;">
+                <button type="submit">Submit</button>
+              </td>
+            </tr>
+          </table>
+          <p id="formError" style="color: red; text-align: center;"></p>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <script src="../assets/scripts/contact.js"></script>
+</body>
+</html>
