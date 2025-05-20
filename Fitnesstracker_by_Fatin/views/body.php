@@ -1,9 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location:   login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Body Measurements</title>
-  <link rel="stylesheet" href="body.css">
+  <link rel="stylesheet" href="../assets/styles/style.css">
   
 </head>
 <body>
@@ -17,6 +25,6 @@
     </form>
   </div>
 
-  <script src="body.js"></script>
+  <script src="../assets/scripts/body.js"></script>
 </body>
 </html>

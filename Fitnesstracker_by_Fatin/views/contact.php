@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8" />
   <title>Fitness Tracker - Contact Us</title>
-  <link rel="stylesheet" href="contact.css" />
+  <link rel="stylesheet" href="../assets/styles/contact.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
 </head>
 <body>
@@ -56,6 +56,6 @@ if (!isset($_SESSION['email'])) {
       </td>
     </tr>
   </table>
-  <script src="contact.js"></script>
+  <script src="../assets/scripts/contact.js"></script>
 </body>
 </html>

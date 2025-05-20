@@ -13,7 +13,7 @@ if (!isset($_SESSION['email'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Water Intake Tracker</title>
-  <link rel="stylesheet" href="water.css">
+  <link rel="stylesheet" href="../assets/styles/style.css">
   
 </head>
 <body>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['email'])) {
 
 </div>
 
-<script src ="water.js"></script>
+<script src ="../assets/scripts/water.js"></script>
 
 </body>
 </html>

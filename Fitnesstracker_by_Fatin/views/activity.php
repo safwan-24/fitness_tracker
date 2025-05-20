@@ -1,9 +1,18 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location:   login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Activity Logs</title>
-  <link rel="stylesheet" href="activity.css" />
+  <link rel="stylesheet" href="../assets/styles/style.css" />
 </head>
 <body>
   <div class="log-container">
@@ -43,6 +52,6 @@
     </table>
   </div>
 
-  <script src="activity.js"></script>
+  <script src="../assets/scripts/activity.js"></script>
 </body>
 </html>

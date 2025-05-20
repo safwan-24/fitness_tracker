@@ -4,11 +4,10 @@
   if (!user) {
     window.location.href = "login.html";
   } else {
-    document.getElementById("username").innerText = Welcome, ${user};
+    document.getElementById("username").innerText = `Welcome, ${user}`;
   }
 
   function logout() {
     localStorage.removeItem("user");
     window.location.href = "login.html";
   }
-

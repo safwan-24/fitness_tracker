@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Exercise Library</title>
-  <link rel="stylesheet" href="exercise.css">
+  <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
   <div class="container">
@@ -21,6 +21,6 @@ if (!isset($_SESSION['email'])) {
     <div id="exercise-list"></div>
   </div>
 
-  <script src="exercise.js"></script>
+  <script src="../assets/scripts/exercise.js"></script>
 </body>
 </html>

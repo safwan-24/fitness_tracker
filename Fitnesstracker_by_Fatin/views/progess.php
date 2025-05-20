@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Progress Chart</title>
-  <link rel="stylesheet" href="progress.css">
+  <link rel="stylesheet" href="../assets/styles/progress.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -21,6 +21,6 @@ if (!isset($_SESSION['email'])) {
     <canvas id="progressChart"></canvas>
   </div>
 
-  <script src="progress.js"></script>
+  <script src="../assets/scripts/progress.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ if (!isset($_SESSION['email'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile Management</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../assets/styles/style.css" />
 </head>
 <body>
 
@@ -67,6 +67,6 @@ if (!isset($_SESSION['email'])) {
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script src="../assets/scripts/script.js"></script>
 </body>
 </html>

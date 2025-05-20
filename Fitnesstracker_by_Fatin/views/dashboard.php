@@ -6,26 +6,24 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fitness Tracker - Home</title>
-  <link rel="stylesheet" href="style.css" />
-
+  <link rel="stylesheet" href="../assets/styles/dashboard.css" />
+ 
 </head>
 <body>
 
 <nav>
   <div><strong>Fitness Tracker</strong></div>
-  <div class="nav-buttons">
+  <div>
     <span id="username">Welcome, user</span>
-    <button class="nav-button" onclick="location.href='admin.php'" style="background: #2d89ef;">Profile</button>
+     <button class="nav-button" onclick="location.href='profile.php'" style="background: #2d89ef;">Profile</button>
     <button class="nav-button" onclick="location.href='logout.php'" style="background: #d9534f;">Logout</button>
-    <?php
+   <?php
         if (isset($_GET['error'])) {
           echo "<p style='color:red;'>Invalid username or password</p>";
         }
@@ -61,44 +59,43 @@ if (!isset($_SESSION['email'])) {
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./measure.jpg')">
     <h2>Body Measurements</h2>
     <p>Track body metrics and view visual progress.</p>
-    <a href="./body.html">Open</a>
+    <a href="./body.php">Open</a>
   </div>
 
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./goal.jpg')">
     <h2>Goal Setting</h2>
     <p>Set SMART goals and earn achievements.</p>
-    <a href="goalSettings.html">Open</a>
+    <a href="./goalSettings.php">Open</a>
   </div>
 
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./plan.jpg')">
     <h2>Workout Planner</h2>
     <p>Plan your weekly routine using drag-and-drop.</p>
-    <a href="">Open</a>
+    <a href="./workout-plans.php">Open</a>
   </div>
 
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./challenge.jpg')">
     <h2>Friend Challenges</h2>
     <p>Compete with friends and cheer each other on!</p>
-    <a href="friend-challenge.html">Open</a>
+    <a href="./friend-challenge.php">Open</a>
   </div>
 
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./nutrition.jpg')">
     <h2>Nutrition Logger</h2>
     <p>Log meals, scan barcodes, and track macros.</p>
-    <a href="nutrition-logging.html">Open</a>
+    <a href="./nutration-logging.php">Open</a>
   </div>
 
   <!-- New Device Sync Section -->
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./device.jpg')">
     <h2>Device Sync</h2>
     <p>Connect your fitness devices and sync data.</p>
-    <a href="device-sync.html">Open</a>
+    <a href="./device-sync.php">Open</a>
   </div>
-
-    <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./device.jpg')">
+      <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./device.jpg')">
     <h2>Contact US</h2>
     <p>Connect your information.</p>
-    <a href="contact.php">Open</a>
+    <a href="./contact.php">Open</a>
   </div>
 
    <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./device.jpg')">
@@ -107,8 +104,11 @@ if (!isset($_SESSION['email'])) {
     <a href="Dataexport.php">Open</a>
   </div>
 
+  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./device.jpg')">
+    <h2>Activity Logs</h2>
+    <p>Connect your activity.</p>
+    <a href="activity.php">Open</a>
+  </div>
 </div>
-
-
 </body>
 </html>
