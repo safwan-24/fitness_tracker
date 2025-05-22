@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Workout Plans | Fitness Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../assets/styles/style.css" />
   <style>
     .workout-container {
       max-width: 1200px;
