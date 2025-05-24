@@ -1,0 +1,157 @@
+sync-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .sync-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .sync-header h1 {
+      color: #fff;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .sync-header p {
+      color: #aaa;
+      font-size: 1rem;
+    }
+    
+    .sync-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      margin-bottom: 25px;
+    }
+    
+    .sync-card h2 {
+      color: #2d89ef;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .sync-card h2 i {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+    
+    .device-select {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: #fff;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    
+    .sync-btn {
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .sync-btn:hover {
+      background: #236ac3;
+    }
+    
+    .sync-btn:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+    
+    .device-list {
+      margin-top: 20px;
+    }
+    
+    .device-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .device-item:hover {
+      background: rgba(45, 137, 239, 0.2);
+    }
+    
+    .device-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(45, 137, 239, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+    
+    .device-info {
+      flex: 1;
+    }
+    
+    .device-name {
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    
+    .device-type {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    .sync-status {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-top: 20px;
+      min-height: 80px;
+    }
+    
+    .sync-progress {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: #2d89ef;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    
+    .priority-settings {
+      margin-top: 20px;
+    }
+    
+    .sync-success {
+      color: #4CAF50;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }

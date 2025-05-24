@@ -38,7 +38,7 @@ if (!isset($_SESSION['email'])) {
     <a href="./workoutlog.php">Open</a>
   </div>
 
-  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/progress.jpg')">
+  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/exercise.jpg')">
     <h2>Exercise Library</h2>
     <p>Browse exercises with animations and filters.</p>
     <a href="./exercise.php">Open</a>
@@ -87,24 +87,24 @@ if (!isset($_SESSION['email'])) {
   </div>
 
   <!-- New Device Sync Section -->
-  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/device.jpg')">
+  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/devicesync.jpg')">
     <h2>Device Sync</h2>
     <p>Connect your fitness devices and sync data.</p>
     <a href="./device-sync.php">Open</a>
   </div>
-      <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/device.jpg')">
+      <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/contact.jpg')">
     <h2>Contact US</h2>
     <p>Connect your information.</p>
     <a href="./contact.php">Open</a>
   </div>
 
-   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/device.jpg')">
+   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/dataexport.png')">
     <h2>Data Export</h2>
     <p>Connect your information.</p>
     <a href="Dataexport.php">Open</a>
   </div>
 
-  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/device.jpg')">
+  <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/activitylog.png')">
     <h2>Activity Logs</h2>
     <p>Connect your activity.</p>
     <a href="activity.php">Open</a>
