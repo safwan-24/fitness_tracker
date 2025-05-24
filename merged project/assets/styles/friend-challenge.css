@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
     .challenges-container {
+=======
+ .challenges-container {
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       max-width: 1000px;
       margin: 0 auto;
       padding: 20px;
@@ -135,7 +139,11 @@
     
     .btn-secondary {
       background: rgba(255, 255, 255, 0.1);
+<<<<<<< HEAD
       color: rgb(41, 6, 155);
+=======
+      color: white;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
     }
     
     .btn-secondary:hover {
@@ -157,7 +165,11 @@
     }
     
     .modal-content {
+<<<<<<< HEAD
       background: #cdbdbd;
+=======
+      background: #111;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       padding: 30px;
       border-radius: 12px;
       width: 90%;
@@ -173,14 +185,22 @@
     }
     
     .modal-header h2 {
+<<<<<<< HEAD
       color: #ca0707;
+=======
+      color: #fff;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       margin: 0;
     }
     
     .close-modal {
       background: none;
       border: none;
+<<<<<<< HEAD
       color: #c10a0a;
+=======
+      color: #aaa;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       font-size: 1.5rem;
       cursor: pointer;
     }
@@ -191,7 +211,11 @@
     
     .form-group label {
       display: block;
+<<<<<<< HEAD
       color: #ae0101;
+=======
+      color: #aaa;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       margin-bottom: 8px;
     }
     
@@ -201,7 +225,11 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 6px;
+<<<<<<< HEAD
       color: hsl(0, 92%, 35%);
+=======
+      color: #fff;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       font-size: 1rem;
     }
     
@@ -229,7 +257,11 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 6px;
+<<<<<<< HEAD
       color: #230101;
+=======
+      color: #fff;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       font-size: 1rem;
     }
     
@@ -249,11 +281,20 @@
     .cheer-header {
       display: flex;
       justify-content: space-between;
+<<<<<<< HEAD
       color: #787272;
+=======
+      color: #aaa;
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
       font-size: 0.9rem;
       margin-bottom: 5px;
     }
     
     .cheer-message {
+<<<<<<< HEAD
       color: #281f1f;
     }
+=======
+      color: #fff;
+    }
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b

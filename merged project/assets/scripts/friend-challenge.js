@@ -66,5 +66,9 @@
       if (event.target === modal) {
         closeModal();
       }
+<<<<<<< HEAD
     };
   
+=======
+    };
+>>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
