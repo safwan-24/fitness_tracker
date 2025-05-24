@@ -12,7 +12,8 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Data Export</title>
-  <link rel="stylesheet" href="../assets/styles/dataexport.css" />
+<link rel="stylesheet" href="../assets/styles/style.css" />
+<link rel="stylesheet" href="../assets/styles/dataexport.css" />
 
 </head>
 <body>
@@ -47,8 +48,7 @@ if (!isset($_SESSION['email'])) {
   </form>
 </div>
 
-<script src="../assets/scripts/dataexport.js">
-</script>
+<script src="../assets/scripts/dataexport.js"></script>
 
 </body>
 </html>
