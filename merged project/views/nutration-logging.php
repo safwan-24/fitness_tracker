@@ -1,44 +1,62 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Nutrition Logger</title>
-    <link rel="stylesheet" href="../assets/styles/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nutrition Logging</title>
+<link rel="stylesheet" href="../assets/styles/nutrition-logging.css" />
+<link rel="stylesheet" href="../assets/styles/style.css" />
 
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    input, button { margin: 5px 0; padding: 8px; width: 100%; }
-    .log-entry { border-bottom: 1px solid #ccc; padding: 10px 0; }
-  </style>
 </head>
 <body>
 
-<h2>Simple Nutrition Logger</h2>
+<h1>Nutrition Logging</h1>
 
-<form id="nutritionForm">
-  <input type="text" id="foodName" placeholder="Food Name (e.g., Apple)" required>
-  <input type="number" id="foodCalories" placeholder="Calories" required>
-  <input type="number" id="foodProtein" placeholder="Protein (g)">
-  <input type="number" id="foodCarbs" placeholder="Carbs (g)">
-  <input type="number" id="foodFat" placeholder="Fat (g)">
-  <button type="button" onclick="addFood()">Add Food</button>
-</form>
+<nav>
+  <button class="tab-btn active" data-tab="foodDiary">Food Diary</button>
+  <button class="tab-btn" data-tab="barcodeScanner">Barcode Scanner</button>
+</nav>
 
-<h3>Today's Food Log:</h3>
-<div id="foodLog"></div>
+<section id="foodDiary" class="tab-content active">
+  <h2>Food Diary</h2>
+  <form id="foodForm">
+    <select id="commonMeals">
+      <option value="">-- Quick-add common meal --</option>
+      <option value='{"name":"Banana","calories":105,"protein":1.3,"carbs":27,"fat":0.3}'>Banana</option>
+      <option value='{"name":"Chicken Breast","calories":165,"protein":31,"carbs":0,"fat":3.6}'>Chicken Breast</option>
+      <option value='{"name":"Rice (1 cup)","calories":205,"protein":4.3,"carbs":45,"fat":0.4}'>Rice (1 cup)</option>
+    </select>
+    <br/>
+    <label>
+      Food Name: <input type="text" id="foodName" required />
+    </label><br/>
+    <label>
+      Calories: <br><input type="number" id="foodCalories" min="1" required />
+    </label><br/>
+    <label>
+      Protein (g): <input type="number" id="foodProtein" min="0" step="0.1" />
+    </label><br/>
+    <label>
+      Carbs (g): <input type="number" id="foodCarbs" min="0" step="0.1" />
+    </label><br/>
+    <label>
+      Fat (g):<br> <input type="number" id="foodFat" min="0" step="0.1" />
+    </label><br/>
+    <button type="submit">Add Food</button>
+  </form>
+  <h3>Food Diary Log:</h3>
+  <div id="foodLog"></div>
+</section>
 
-<script>
-   src="../assets/scripts/nutration-logging.js">
-</script>
+<section id="barcodeScanner" class="tab-content">
+  <h2>Barcode Scanner</h2>
+  <p>Enter barcode (mock scan):</p>
+  <input type="text" id="barcodeInput" placeholder="e.g. 0123456789012" />
+  <button id="scanBtn">Scan & Add Food</button>
+  <div id="scanResult"></div>
+</section>
+
+<script src="../assets/scripts/nutration-logging.js"></script>
 
 </body>
 </html>

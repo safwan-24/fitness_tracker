@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goal Setting App</title>
-    <link rel="stylesheet" href="../assets/styles/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-=======
+
+
 <?php
 session_start();
 
@@ -25,7 +17,7 @@ if (!isset($_SESSION['email'])) {
   <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/goalsettings.css" />
 
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
+
 </head>
 <body>
     <div class="app-container">
@@ -93,7 +85,6 @@ if (!isset($_SESSION['email'])) {
                 </form>
             </div>
 
-<<<<<<< HEAD
             <!-- Progress Tracker Screen -->
             <div id="tracker" class="screen">
                 <h2>Your Goals Progress</h2>
@@ -115,8 +106,5 @@ if (!isset($_SESSION['email'])) {
     </div>
 
     <script src="../assets/scripts/goalsettings.js"></script>
-=======
-  <script src="../assets/scripts/goalsettings.js"> </script>
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
 </body>
 </html>

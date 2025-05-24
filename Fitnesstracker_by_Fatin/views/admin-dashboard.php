@@ -80,7 +80,18 @@
     </div>
 
     <script>
+//        document.addEventListener('DOMContentLoaded', function() {
+//     // Check if admin is logged in
+//     if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
+//         window.location.href = 'admin-login.html';
+//     }
 
+//     // Logout functionality
+//     document.getElementById('logoutBtn').addEventListener('click', function() {
+//         sessionStorage.removeItem('adminLoggedIn');
+//         window.location.href = 'admin-login.html';
+//     });
+// });
     </script>
 </body>
 </html>

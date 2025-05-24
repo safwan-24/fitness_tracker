@@ -1,70 +1,42 @@
+document.getElementById("challengeForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    // Display username
-    const user = localStorage.getItem("user");
-    if (user) {
-      document.getElementById("username").textContent = `Welcome, ${user}`;
-    }
-    
-    // Modal functions
-    function openModal() {
-      document.getElementById('createChallengeModal').style.display = 'flex';
-    }
-    
-    function closeModal() {
-      document.getElementById('createChallengeModal').style.display = 'none';
-    }
-    
-    // Form submission
-    document.getElementById('challengeForm').onsubmit = function(e) {
-      e.preventDefault();
-      alert('Challenge created successfully!');
-      closeModal();
-      // In a real app, you would add the new challenge to the UI here
-    };
-    
-    // Send cheer function
-    function sendCheer() {
-      const friend = document.getElementById('friendSelect').value;
-      const message = document.getElementById('cheerMessage').value.trim();
-      
-      if (!friend || !message) {
-        alert('Please select a friend and write a message');
-        return;
-      }
-      
-      const cheerFeed = document.getElementById('cheerFeed');
-      const now = new Date();
-      const timeString = formatTime(now);
-      
-      const cheerItem = document.createElement('div');
-      cheerItem.className = 'cheer-item';
-      cheerItem.innerHTML = `
-        <div class="cheer-header">
-          <span>You → ${friend}</span>
-          <span>Just now</span>
-        </div>
-        <div class="cheer-message">${message}</div>
-      `;
-      
-      cheerFeed.prepend(cheerItem);
-      document.getElementById('cheerMessage').value = '';
-    }
-    
-    // Helper function to format time
-    function formatTime(date) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-    
-    function logout() {
-      localStorage.removeItem("user");
-      window.location.href = "login.html";
-    }
-    
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('createChallengeModal');
-      if (event.target === modal) {
-        closeModal();
-      }
-    };
-  
+  // Clear previous errors
+  const errorMessages = this.querySelectorAll(".error-message");
+  errorMessages.forEach(msg => (msg.textContent = ""));
+
+  let valid = true;
+
+  const nameInput = this.challengeName;
+  const typeInput = this.challengeType;
+  const targetInput = this.target;
+
+  // Validate Challenge Name
+  if (!nameInput.value.trim()) {
+    showError(nameInput, "Challenge name is required.");
+    valid = false;
+  }
+
+  // Validate Challenge Type
+  if (!typeInput.value) {
+    showError(typeInput, "Please select a challenge type.");
+    valid = false;
+  }
+
+  // Validate Target (positive integer)
+  if (!targetInput.value || isNaN(targetInput.value) || Number(targetInput.value) < 1) {
+    showError(targetInput, "Target must be a positive number.");
+    valid = false;
+  }
+
+  if (valid) {
+    alert(`Challenge Created!\nName: ${nameInput.value}\nType: ${typeInput.value}\nTarget: ${targetInput.value}`);
+    this.reset();
+  }
+});
+
+function showError(input, message) {
+  const error = input.parentElement.querySelector(".error-message");
+  error.textContent = message;
+  input.focus();
+}

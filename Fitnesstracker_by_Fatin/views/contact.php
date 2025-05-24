@@ -1,8 +1,9 @@
 <?php
 session_start();
 
+// Redirect to login if not logged in
 if (!isset($_SESSION['email'])) {
-    header("Location:   login.php");
+    header("Location: ../views/login.php");
     exit;
 }
 ?>
@@ -11,9 +12,8 @@ if (!isset($_SESSION['email'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Fitness Tracker - Contact Us</title>
+  <title>Contact Us - Fitness Tracker</title>
   <link rel="stylesheet" href="../assets/styles/contact.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <table class="main-table">
@@ -24,7 +24,8 @@ if (!isset($_SESSION['email'])) {
     </tr>
     <tr>
       <td colspan="2" class="form-cell">
-        <form id="contactForm" class="auth-form" novalidate>
+        <!-- Contact Form -->
+        <form id="contactForm" class="auth-form" method="POST" action="contact.php">
           <h2>Contact Us</h2>
           <table class="form-table">
             <tr>
@@ -47,15 +48,27 @@ if (!isset($_SESSION['email'])) {
             </tr>
             <tr>
               <td colspan="2" style="text-align: center;">
-                <button type="submit">Submit</button>
+                <button type="submit" name="submit">Submit</button>
               </td>
             </tr>
           </table>
-          <p id="formError" style="color: red; text-align: center;"></p>
         </form>
+
+        <!-- Display result message -->
+        <?php
+          if (isset($_GET['msg'])) {
+              echo "<p style='text-align:center; color: green;'>" . htmlspecialchars($_GET['msg']) . "</p>";
+          }
+        ?>
       </td>
     </tr>
   </table>
-  <script src="../assets/scripts/contact.js"></script>
 </body>
 </html>
+
+<?php
+// Include handler at the end to process form POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include_once '../controller/contact_submit.php';
+}
+?>

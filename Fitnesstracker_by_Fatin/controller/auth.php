@@ -1,19 +1,41 @@
 <?php
 session_start();
 
-$valid_email = 'user@gmail.com';
-$valid_password = 'user1234';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $host = "localhost";
+    $db = "fitnesstracker";
+    $user = "root";
+    $pass = "";
 
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+    $conn = new mysqli($host, $user, $pass, $db);
 
-if ($email === $valid_email && $password === $valid_password) {
-    $_SESSION['email'] = $email;
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-    header("Location: /webtech/learning-web-technologilearning-web-technologies-spring2024-2025-sec-A/fitness_tracker/Fitnesstracker_by_Fatin/views/dashboard.php");
-    exit;
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Query to find user
+    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        // Login successful
+        $_SESSION['email'] = $email;
+        header("Location: ../views/dashboard.php");
+        exit;
+    } else {
+        echo "Invalid email or password.";
+    }
+
+    $stmt->close();
+    $conn->close();
 } else {
-    header("Location: /Fitnesstracker_by_Fatin/views/login.php");
-    exit;
+    echo "Invalid request.";
 }
 ?>

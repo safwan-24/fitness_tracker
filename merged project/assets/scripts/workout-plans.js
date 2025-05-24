@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 document.getElementById('workoutForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -15,7 +15,6 @@ document.getElementById('workoutForm').addEventListener('submit', function(e) {
   document.getElementById('programDetails').innerHTML = details;
   document.getElementById('confirmation').classList.remove('hidden');
 });
-=======
 
     // Display username
     const user = localStorage.getItem("user");
@@ -133,5 +132,4 @@ document.getElementById('workoutForm').addEventListener('submit', function(e) {
       localStorage.removeItem("user");
       window.location.href = "login.php";
     }
-  
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
+

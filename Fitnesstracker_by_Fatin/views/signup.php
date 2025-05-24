@@ -1,3 +1,4 @@
+<!-- signup.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +8,15 @@
   <link rel="stylesheet" href="../assets/styles/style.css" />
 </head>
 <body>
-  <table class="main-table">
-    <tr>
-      <td colspan="2" class="logo-cell">
-        <div class="logo-text">Fitness Tracker</div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="form-cell">
-        <form id="signupForm" class="auth-form">
+  <form id="signupForm" class="auth-form" method="POST" action="../controller/signupdb.php">
+    <table class="main-table">
+      <tr>
+        <td colspan="2" class="logo-cell">
+          <div class="logo-text">Fitness Tracker</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="form-cell">
           <h2>Sign Up</h2>
           <table class="form-table">
             <tr>
@@ -45,10 +46,10 @@
               </td>
             </tr>
           </table>
-        </form>
-      </td>
-    </tr>
-  </table>
+        </td>
+      </tr>
+    </table>
+  </form>
   <script src="form-validation.js"></script>
 </body>
 </html>

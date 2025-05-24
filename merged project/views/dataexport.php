@@ -12,11 +12,8 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Data Export</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../assets/styles/style.css" />
-=======
-  <link rel="stylesheet" href="../assets/styles/dataexport.css" />
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
+<link rel="stylesheet" href="../assets/styles/style.css" />
+<link rel="stylesheet" href="../assets/styles/dataexport.css" />
 
 </head>
 <body>
@@ -51,13 +48,7 @@ if (!isset($_SESSION['email'])) {
   </form>
 </div>
 
-<<<<<<< HEAD
-<script>
-   src="../assets/scripts/dataexport.js">
-=======
-<script src="../assets/scripts/dataexport.js">
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b
-</script>
+<script src="../assets/scripts/dataexport.js"></script>
 
 </body>
 </html>
