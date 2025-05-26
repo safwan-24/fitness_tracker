@@ -1,5 +1,7 @@
-<?php include '../controller/profile.php'; ?>
-
+<?php
+session_start();
+include '../controller/profile.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

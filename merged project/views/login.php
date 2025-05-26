@@ -42,7 +42,7 @@ if (isset($_SESSION['email'])) {
             <tr>
               <td colspan="2" class="form-links">
                 <a href="forgotpassword.html">Forgot password?</a><br />
-                Don't have an account? <a href="signup.html">Sign up</a><br />
+                Don't have an account? <a href="signup.php">Sign up</a><br />
                 <a href="admin-login.php">Admin Login?</a>
               </td>
             </tr>
