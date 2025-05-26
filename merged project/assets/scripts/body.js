@@ -20,7 +20,7 @@ document.getElementById("measureForm").addEventListener("submit", function(event
   if (isNaN(chest) || chest <= 0) {
     alert("Please enter a valid chest measurement greater than 0.");
     return;
-  }
+  } 
 
   // Save to history
   const historyList = document.getElementById("history");

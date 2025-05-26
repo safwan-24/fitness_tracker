@@ -25,7 +25,7 @@ if (!isset($_SESSION['email'])) {
     <tr>
       <td colspan="2" class="form-cell">
         <!-- Contact Form -->
-        <form id="contactForm" class="auth-form" method="POST" action="contact.php">
+        <form id="contactForm" class="auth-form" method="POST" action="../controller/contact_submit.php">
           <h2>Contact Us</h2>
           <table class="form-table">
             <tr>
@@ -66,9 +66,3 @@ if (!isset($_SESSION['email'])) {
 </body>
 </html>
 
-<?php
-// Include handler at the end to process form POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once '../controller/contact_submit.php';
-}
-?>

@@ -24,7 +24,7 @@ if (!isset($_SESSION['email'])) {
       <button onclick="startStopTimer()">Start/Stop Timer</button>
     </div>
 
-    <form id="workoutForm">
+    <form id="workoutForm" autocomplete="off">
       <h2>Log Workout</h2>
       <input type="text" placeholder="Exercise Name" id="exercise" required />
       <input type="number" placeholder="Sets" id="sets" required />

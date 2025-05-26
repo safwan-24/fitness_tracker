@@ -1,7 +1,5 @@
 document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
 
-  // Get form fields
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const message = document.getElementById("message").value.trim();
@@ -17,13 +15,6 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     return;
   }
 
-  // Basic email pattern validation
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    errorElem.textContent = "Please enter a valid email address.";
-    return;
-  }
-
   if (!notRobot) {
     errorElem.textContent = "Please confirm you are not a robot.";
     return;
@@ -31,5 +22,4 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 
   // If everything is valid
   alert("Your message has been submitted. A confirmation email has been sent.");
-  this.reset();
 });
