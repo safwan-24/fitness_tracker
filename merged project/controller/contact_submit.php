@@ -28,8 +28,7 @@ if ($success) {
         exit;
     }
 
-    header("Location: ../views/contact.php?msg=Thank you for contacting us!");
-    exit;
+  
 } else {
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         header('Content-Type: application/json');

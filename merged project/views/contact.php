@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Redirect to login if not logged in
+
 if (!isset($_SESSION['email'])) {
     header("Location: ../views/login.php");
     exit;
@@ -54,15 +54,12 @@ if (!isset($_SESSION['email'])) {
           </table>
         </form>
 
-        <!-- Display result message -->
-        <?php
-          if (isset($_GET['msg'])) {
-              echo "<p style='text-align:center; color: green;'>" . htmlspecialchars($_GET['msg']) . "</p>";
-          }
-        ?>
+     
       </td>
     </tr>
   </table>
+    <script src="../assets/scripts/contact.js"></script>
+
 </body>
 </html>
 
