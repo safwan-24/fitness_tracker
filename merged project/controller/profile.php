@@ -1,6 +1,6 @@
 <?php
-session_start();
-include '../model/profile.php';
+$success = "";
+$error = "";
 
 if (!isset($_SESSION['email'])) {
     header("Location: ../views/login.php");
@@ -27,9 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $new = $_POST['newPassword'];
         $confirm = $_POST['confirmPassword'];
 
-        // No hashing used, just direct match
         if ($current !== $user['password']) {
-            $error = "Current password incorrect.";
+            $error = "Current password is incorrect.";
         } elseif ($new !== $confirm) {
             $error = "New passwords do not match.";
         } else {
@@ -40,5 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    // Re-fetch updated user data
+    $user = getUserByEmail($_SESSION['email']);
 }
 ?>

@@ -1,25 +1,41 @@
-document.getElementById("contactForm").addEventListener("submit", function (e) {
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-  const notRobot = document.getElementById("notRobot").checked;
-  const errorElem = document.getElementById("formError");
+    const form = e.target;
+    const formData = new FormData(form);
 
-  // Reset error message
-  errorElem.textContent = "";
+    // Optional: Check "I'm not a robot"
+    if (!document.getElementById('notRobot').checked) {
+        alert("Please confirm you're not a robot.");
+        return;
+    }
 
-  // Validation
-  if (name === "" || email === "" || message === "") {
-    errorElem.textContent = "Please fill in all required fields.";
-    return;
-  }
+    fetch("../controller/contact_submit.php", {
+        method: "POST",
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'  // Let PHP know it's AJAX
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const msgBox = document.createElement('p');
+        msgBox.textContent = data.message;
+        msgBox.style.color = data.success ? "green" : "red";
+        msgBox.style.textAlign = "center";
 
-  if (!notRobot) {
-    errorElem.textContent = "Please confirm you are not a robot.";
-    return;
-  }
+        // Remove existing message if any
+        const existing = document.querySelector('.form-cell p');
+        if (existing) existing.remove();
 
-  // If everything is valid
-  alert("Your message has been submitted. A confirmation email has been sent.");
+        document.querySelector('.form-cell').appendChild(msgBox);
+
+        if (data.success) {
+            form.reset();
+        }
+    })
+    .catch(error => {
+        alert("An error occurred: " + error);
+        console.error("Error:", error);
+    });
 });

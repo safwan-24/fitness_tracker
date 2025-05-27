@@ -1,34 +1,23 @@
-document.getElementById("measureForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // prevent form from submitting normally
+document.getElementById('measureForm').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-  // Get values
-  const weight = parseFloat(document.getElementById("weight").value);
-  const waist = parseFloat(document.getElementById("waist").value);
-  const chest = parseFloat(document.getElementById("chest").value);
+  const formData = new FormData(this);
 
-  // Validation
-  if (isNaN(weight) || weight <= 0) {
-    alert("Please enter a valid weight greater than 0.");
-    return;
-  }
-
-  if (isNaN(waist) || waist <= 0) {
-    alert("Please enter a valid waist measurement greater than 0.");
-    return;
-  }
-
-  if (isNaN(chest) || chest <= 0) {
-    alert("Please enter a valid chest measurement greater than 0.");
-    return;
-  } 
-
-  // Save to history
-  const historyList = document.getElementById("history");
-  const entry = document.createElement("li");
-  const date = new Date().toLocaleDateString();
-  entry.textContent = `${date} - Weight: ${weight}kg, Waist: ${waist}cm, Chest: ${chest}cm`;
-  historyList.appendChild(entry);
-
-  // Clear form
-  document.getElementById("measureForm").reset();
+  fetch('../controller/body.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    const msg = document.getElementById('statusMsg');
+    msg.textContent = data.message;
+    msg.style.color = data.success ? 'green' : 'red';
+    if (data.success) {
+      document.getElementById('measureForm').reset();
+    }
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    document.getElementById('statusMsg').textContent = 'An error occurred.';
+  });
 });
