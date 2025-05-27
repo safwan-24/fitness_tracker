@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const navButtons = document.querySelectorAll('.nav-btn');
@@ -7,172 +6,262 @@ document.addEventListener('DOMContentLoaded', function() {
     const goalsList = document.getElementById('goals-list');
     const trophiesContainer = document.getElementById('trophies-container');
     
+    if (!goalForm) {
+        console.error('Goal form not found!');
+        return;
+    }
+    
     // Navigation between screens
     navButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons and screens
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            screens.forEach(screen => screen.classList.remove('active'));
+        button.addEventListener('click', () => {
+            const targetScreen = button.dataset.screen;
             
-            // Add active class to clicked button and corresponding screen
-            this.classList.add('active');
-            const screenId = this.getAttribute('data-screen');
-            document.getElementById(screenId).classList.add('active');
+            // Update active button
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update active screen
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+                if (screen.id === targetScreen) {
+                    screen.classList.add('active');
+                }
+            });
         });
     });
     
-    // Form validation and submission
-    goalForm.addEventListener('submit', function(e) {
+    // Form handling
+    const errorMessages = document.querySelectorAll('.error-message');
+    
+    // Clear error messages
+    function clearErrors() {
+        document.querySelectorAll('.error-message').forEach(error => error.textContent = '');
+    }
+    
+    // Validate form data
+    function validateForm(formData) {
+        let errors = {};
+        let isValid = true;
+        
+        console.log('Validating form data:', formData); // Debug log
+        
+        // Title validation
+        if (!formData.title || !formData.title.trim()) {
+            errors.title = 'Goal title is required';
+            isValid = false;
+        }
+        
+        // Type validation
+        if (!formData.type) {
+            errors.type = 'Please select a goal type';
+            isValid = false;
+        }
+        
+        // Target value validation
+        if (!formData.targetValue || isNaN(formData.targetValue)) {
+            errors.targetValue = 'Please enter a valid number';
+            isValid = false;
+        }
+        
+        // Unit validation
+        if (!formData.unit) {
+            errors.unit = 'Please select a unit';
+            isValid = false;
+        }
+        
+        // Date validation
+        if (!formData.targetDate) {
+            errors.targetDate = 'Please select a target date';
+            isValid = false;
+        } else {
+            const selectedDate = new Date(formData.targetDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate <= today) {
+                errors.targetDate = 'Target date must be in the future';
+                isValid = false;
+            }
+        }
+        
+        console.log('Validation result:', { isValid, errors }); // Debug log
+        return { isValid, errors };
+    }
+    
+    // Display errors in the form
+    function displayErrors(errors) {
+        clearErrors();
+        Object.keys(errors).forEach(field => {
+            const errorElement = document.querySelector(`#${field}`).nextElementSibling;
+            if (errorElement) {
+                errorElement.textContent = errors[field];
+            }
+        });
+    }
+    
+    // Handle form submission
+    goalForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Reset error messages
-        clearErrors();
-        
-        // Validate form
-        if (validateForm()) {
-            // Create new goal
-            const newGoal = {
-                id: Date.now().toString(),
-                title: document.getElementById('goal-title').value,
-                type: document.getElementById('goal-type').value,
-                targetValue: parseFloat(document.getElementById('target-value').value),
-                unit: document.getElementById('target-unit').value,
-                targetDate: document.getElementById('target-date').value,
-                currentValue: 0,
-                completed: false,
-                completionDate: null,
-                createdAt: new Date().toISOString()
-            };
-            
-            // Save goal to localStorage
-            saveGoal(newGoal);
-            
-            // Update UI
-            addGoalToUI(newGoal);
-            
-            // Reset form
-            goalForm.reset();
-            
-            // Switch to Progress Tracker
-            document.querySelector('.nav-btn[data-screen="tracker"]').click();
+        // Get form values
+        const title = document.getElementById('goal-title').value.trim();
+        const type = document.getElementById('goal-type').value;
+        const targetValue = document.getElementById('target-value').value;
+        const unit = document.getElementById('target-unit').value;
+        const targetDate = document.getElementById('target-date').value;
+
+        // Log form values
+        console.log('Form Values:', {
+            title, type, targetValue, unit, targetDate
+        });
+
+        // Basic validation
+        if (!title || !type || !targetValue || !unit || !targetDate) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        // Create form data object
+        const formData = {
+            title: title,
+            type: type,
+            targetValue: parseFloat(targetValue),
+            unit: unit,
+            targetDate: targetDate
+        };
+
+        // Log the data being sent
+        console.log('Sending data to server:', formData);
+
+        try {
+            // Show loading state
+            const submitButton = goalForm.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Creating...';
+            submitButton.disabled = true;
+
+            // Log the request URL
+            console.log('Sending request to:', '../controller/goal-handler.php');
+
+            // Send request
+            const response = await fetch('../controller/goal-handler.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            // Log the raw response
+            console.log('Raw response:', response);
+
+            // Parse response
+            const result = await response.json();
+            console.log('Server response:', result);
+
+            // Reset button state
+            submitButton.textContent = 'Create Goal';
+            submitButton.disabled = false;
+
+            if (result.success) {
+                // Show success message with details
+                const successMessage = `Goal created successfully!\n\nDetails:\n` +
+                    `Title: ${title}\n` +
+                    `Type: ${type}\n` +
+                    `Target: ${targetValue} ${unit}\n` +
+                    `Due Date: ${new Date(targetDate).toLocaleDateString()}`;
+                
+                alert(successMessage);
+                
+                // Reset form
+                goalForm.reset();
+                
+                // Refresh goals list if it exists
+                const goalsList = document.getElementById('goals-list');
+                if (goalsList) {
+                    // Add the new goal to the list
+                    const goalElement = document.createElement('div');
+                    goalElement.className = 'goal-card';
+                    goalElement.innerHTML = `
+                        <h3>${title}</h3>
+                        <p>Type: ${type}</p>
+                        <p>Target: ${targetValue} ${unit}</p>
+                        <p>Due: ${new Date(targetDate).toLocaleDateString()}</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                    `;
+                    
+                    // Remove empty message if it exists
+                    const emptyMessage = goalsList.querySelector('.empty-message');
+                    if (emptyMessage) {
+                        emptyMessage.remove();
+                    }
+                    
+                    goalsList.insertBefore(goalElement, goalsList.firstChild);
+                }
+            } else {
+                // Show detailed error message
+                let errorMessage = 'Failed to create goal:\n';
+                if (result.errors && Array.isArray(result.errors)) {
+                    errorMessage += result.errors.join('\n');
+                } else if (result.message) {
+                    errorMessage += result.message;
+                } else {
+                    errorMessage += 'Unknown error occurred';
+                }
+                alert(errorMessage);
+                console.error('Server returned error:', result);
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Error creating goal: ' + error.message);
+            submitButton.textContent = 'Create Goal';
+            submitButton.disabled = false;
         }
     });
     
     // Load goals when page loads
     loadGoals();
     
-    // Form validation function
-    function validateForm() {
-        let isValid = true;
-        
-        // Validate title
-        const titleInput = document.getElementById('goal-title');
-        if (!titleInput.value.trim()) {
-            showError(titleInput, 'Goal title is required');
-            isValid = false;
-        }
-        
-        // Validate type
-        const typeInput = document.getElementById('goal-type');
-        if (!typeInput.value) {
-            showError(typeInput, 'Please select a goal type');
-            isValid = false;
-        }
-        
-        // Validate target value
-        const valueInput = document.getElementById('target-value');
-        if (!valueInput.value || isNaN(valueInput.value) || parseFloat(valueInput.value) <= 0) {
-            showError(valueInput, 'Please enter a valid positive number');
-            isValid = false;
-        }
-        
-        // Validate unit
-        const unitInput = document.getElementById('target-unit');
-        if (!unitInput.value) {
-            showError(unitInput, 'Please select a unit');
-            isValid = false;
-        }
-        
-        // Validate date
-        const dateInput = document.getElementById('target-date');
-        if (!dateInput.value) {
-            showError(dateInput, 'Please select a target date');
-            isValid = false;
-        } else {
-            const selectedDate = new Date(dateInput.value);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            if (selectedDate < today) {
-                showError(dateInput, 'Target date must be in the future');
-                isValid = false;
-            }
-        }
-        
-        return isValid;
-    }
-    
-    // Show error message
-    function showError(input, message) {
-        const formGroup = input.parentElement;
-        const errorMessage = formGroup.querySelector('.error-message');
-        input.style.borderColor = 'var(--danger-color)';
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
-    }
-    
-    // Clear all error messages
-    function clearErrors() {
-        document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
-            input.style.borderColor = '#ddd';
-            const errorMessage = input.parentElement.querySelector('.error-message');
-            errorMessage.textContent = '';
-            errorMessage.style.display = 'none';
-        });
-    }
-    
-    // Save goal to localStorage
-    function saveGoal(goal) {
-        const goals = getGoals();
-        goals.push(goal);
-        localStorage.setItem('goals', JSON.stringify(goals));
-    }
-    
-    // Get all goals from localStorage
-    function getGoals() {
-        return JSON.parse(localStorage.getItem('goals')) || [];
-    }
-    
     // Load goals and display them
-    function loadGoals() {
-        const goals = getGoals();
-        
-        // Clear existing goals in UI
-        goalsList.innerHTML = '';
-        trophiesContainer.innerHTML = '';
+    async function loadGoals() {
+        const goalsList = document.getElementById('goals-list');
+        try {
+            const response = await fetch('../controller/get-goals.php');
+            
+            if (!response.ok) {
+                throw new Error(`Failed to load goals (Status: ${response.status})`);
+            }
+            
+            const goals = await response.json();
+            
+            if (!Array.isArray(goals)) {
+                if (goals.success === false) {
+                    throw new Error(goals.message || 'Failed to load goals');
+                }
+                throw new Error('Invalid response from server');
+            }
         
         if (goals.length === 0) {
             goalsList.innerHTML = '<p class="empty-message">No goals yet. Create one to get started!</p>';
-            trophiesContainer.innerHTML = '<p class="empty-message">No completed goals yet. Keep working!</p>';
             return;
         }
         
-        // Separate completed and incomplete goals
-        const incompleteGoals = goals.filter(goal => !goal.completed);
-        const completedGoals = goals.filter(goal => goal.completed);
-        
-        // Display incomplete goals in Progress Tracker
-        if (incompleteGoals.length > 0) {
-            incompleteGoals.forEach(goal => addGoalToUI(goal));
-        } else {
-            goalsList.innerHTML = '<p class="empty-message">All goals completed! Create a new one.</p>';
-        }
-        
-        // Display completed goals in Celebration screen
-        if (completedGoals.length > 0) {
-            completedGoals.forEach(goal => addTrophyToUI(goal));
-        } else {
-            trophiesContainer.innerHTML = '<p class="empty-message">No completed goals yet. Keep working!</p>';
+            goalsList.innerHTML = goals.map(goal => `
+                <div class="goal-card">
+                    <h3>${goal.title}</h3>
+                    <p>Type: ${goal.goal_type}</p>
+                    <p>Target: ${goal.target_value} ${goal.target_unit}</p>
+                    <p>Due: ${new Date(goal.target_date).toLocaleDateString()}</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: ${goal.progress || 0}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error('Error loading goals:', error);
+            goalsList.innerHTML = '<p class="error-message">Error loading goals: ' + error.message + '</p>';
+            alert('Error loading goals: ' + error.message);
         }
     }
     
@@ -326,49 +415,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
+    
+    // Save goal to localStorage
+    function saveGoal(goal) {
+        const goals = getGoals();
+        goals.push(goal);
+        localStorage.setItem('goals', JSON.stringify(goals));
+    }
+    
+    // Get all goals from localStorage
+    function getGoals() {
+        return JSON.parse(localStorage.getItem('goals')) || [];
+    }
 });
-=======
-// Display username
-    const user = localStorage.getItem("user");
-    if (user) {
-      document.getElementById("username").textContent = `Welcome, ${user}`;
-    }
-    
-    // Modal functions
-    function openModal() {
-      document.getElementById('createGoalModal').style.display = 'flex';
-      // Set default dates
-      const today = new Date().toISOString().split('T')[0];
-      const nextMonth = new Date();
-      nextMonth.setMonth(nextMonth.getMonth() + 1);
-      const nextMonthStr = nextMonth.toISOString().split('T')[0];
-      
-      document.getElementById('goalStart').value = today;
-      document.getElementById('goalEnd').value = nextMonthStr;
-    }
-    
-    function closeModal() {
-      document.getElementById('createGoalModal').style.display = 'none';
-    }
-    
-    // Form submission
-    document.getElementById('goalForm').onsubmit = function(e) {
-      e.preventDefault();
-      alert('Goal created successfully!');
-      closeModal();
-      // In a real app, you would add the new goal to the UI here
-    };
-    
-    function logout() {
-      localStorage.removeItem("user");
-      window.location.href = "login.html";
-    }
-    
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('createGoalModal');
-      if (event.target === modal) {
-        closeModal();
-      }
-    };
->>>>>>> 4aada892a4f8df7ffafebbe4f97b2c0b3561e32b

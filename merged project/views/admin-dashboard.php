@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Redirect to admin login if not logged in
+if (!isset($_SESSION['admin_logged_in'])) {
+    header('Location: admin-login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +21,9 @@
         <div class="nav-logo">Fitness Tracker</div>
         <div class="nav-user">
             <span>Admin Dashboard</span>
-            <button onclick="logout()" class="logout-btn">Logout</button>
+            <form action="logout.php" method="post" style="display:inline;">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
         </div>
     </nav>
 
@@ -20,21 +32,21 @@
             <h1>Admin Dashboard</h1>
             <p>Manage your Fitness Tracker application</p>
         </div>
-        
+
         <div class="admin-stats">
             <div class="stat-card">
                 <h3>Total Users</h3>
                 <div class="stat-value">1,248</div>
                 <p>+12% from last month</p>
             </div>
-            
+
             <div class="stat-card">
                 <h3>Workouts Logged</h3>
                 <div class="stat-value">5,672</div>
                 <p>This month</p>
             </div>
         </div>
-        
+
         <div class="admin-sections">
             <div class="admin-section">
                 <h2>User Management</h2>
@@ -46,52 +58,16 @@
                     <li><a href="#"><span class="icon">📊</span> User Analytics</a></li>
                 </ul>
             </div>
-            
+
             <div class="admin-section">
                 <h2>Content Management</h2>
                 <ul class="admin-list">
                     <li><a href="#"><span class="icon">💪</span> Manage Exercises</a></li>
                     <li><a href="#"><span class="icon">📝</span> Manage Workouts</a></li>
                     <li><a href="#"><span class="icon">🍎</span> Nutrition Database</a></li>
-                    <li><a href="#"><span class="icon">🏆</span> Challenges & Goals</a></li>
                 </ul>
-                
-                <div class="recent-activity">
-                    <h3>Recent Activity</h3>
-                    <div class="activity-item">
-                        <div class="activity-icon">👤</div>
-                        <div class="activity-details">
-                            <h4>New user registered</h4>
-                            <p>john.doe@example.com</p>
-                        </div>
-                        <div class="activity-time">2 min ago</div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">💪</div>
-                        <div class="activity-details">
-                            <h4>Workout completed</h4>
-                            <p>Full Body Workout by user123</p>
-                        </div>
-                        <div class="activity-time">15 min ago</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-
-    <script>
-//        document.addEventListener('DOMContentLoaded', function() {
-//     // Check if admin is logged in
-//     if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
-//         window.location.href = 'admin-login.html';
-//     }
-
-//     // Logout functionality
-//     document.getElementById('logoutBtn').addEventListener('click', function() {
-//         sessionStorage.removeItem('adminLoggedIn');
-//         window.location.href = 'admin-login.html';
-//     });
-// });
-    </script>
 </body>
 </html>

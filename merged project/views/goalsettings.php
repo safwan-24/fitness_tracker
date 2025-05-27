@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -25,8 +23,7 @@ if (!isset($_SESSION['email'])) {
             <h1>Goal Setting App</h1>
             <nav>
                 <button class="nav-btn active" data-screen="creator">Goal Creator</button>
-                <button class="nav-btn" data-screen="tracker">Progress Tracker</button>
-                <button class="nav-btn" data-screen="celebration">Celebration</button>
+                
             </nav>
         </header>
 
@@ -34,16 +31,19 @@ if (!isset($_SESSION['email'])) {
             <!-- Goal Creator Screen -->
             <div id="creator" class="screen active">
                 <h2>Set a New Goal</h2>
-                <form id="goal-form">
+                <div id="debug-info" style="display:none;">
+                    <p>Session Email: <?php echo $_SESSION['email'] ?? 'Not set'; ?></p>
+                </div>
+                <form id="goal-form" onsubmit="return false;">
                     <div class="form-group">
                         <label for="goal-title">Goal Title</label>
-                        <input type="text" id="goal-title" placeholder="e.g., Run 5K" required>
+                        <input type="text" id="goal-title" name="title" placeholder="e.g., Run 5K" required>
                         <small class="error-message"></small>
                     </div>
                     
                     <div class="form-group">
                         <label for="goal-type">Goal Type</label>
-                        <select id="goal-type" required>
+                        <select id="goal-type" name="type" required>
                             <option value="">Select a type</option>
                             <option value="fitness">Fitness</option>
                             <option value="health">Health</option>
@@ -56,13 +56,13 @@ if (!isset($_SESSION['email'])) {
                     
                     <div class="form-group">
                         <label for="target-value">Target Value</label>
-                        <input type="number" id="target-value" placeholder="e.g., 5 (for 5K or 5lbs)" required>
+                        <input type="number" id="target-value" name="targetValue" placeholder="e.g., 5 (for 5K or 5lbs)" required>
                         <small class="error-message"></small>
                     </div>
                     
                     <div class="form-group">
                         <label for="target-unit">Unit</label>
-                        <select id="target-unit" required>
+                        <select id="target-unit" name="unit" required>
                             <option value="">Select unit</option>
                             <option value="km">Kilometers</option>
                             <option value="miles">Miles</option>
@@ -77,11 +77,11 @@ if (!isset($_SESSION['email'])) {
                     
                     <div class="form-group">
                         <label for="target-date">Target Date</label>
-                        <input type="date" id="target-date" required>
+                        <input type="date" id="target-date" name="targetDate" required>
                         <small class="error-message"></small>
                     </div>
                     
-                    <button type="submit" class="btn">Create Goal</button>
+                    <button type="submit" class="btn" onclick="document.getElementById('debug-info').style.display='block';">Create Goal</button>
                 </form>
             </div>
 
@@ -94,17 +94,15 @@ if (!isset($_SESSION['email'])) {
                 </div>
             </div>
 
-            <!-- Celebration Screen -->
-            <div id="celebration" class="screen">
-                <h2>Your Achievements</h2>
-                <div id="trophies-container">
-                    <!-- Completed goals with trophies will appear here -->
-                    <p class="empty-message">No completed goals yet. Keep working!</p>
-                </div>
-            </div>
         </main>
     </div>
 
+    <script>
+        window.onerror = function(msg, url, line) {
+            console.error(`Error: ${msg}\nURL: ${url}\nLine: ${line}`);
+            return false;
+        };
+    </script>
     <script src="../assets/scripts/goalsettings.js"></script>
 </body>
 </html>

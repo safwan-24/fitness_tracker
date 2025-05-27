@@ -1,33 +1,52 @@
 <?php
 session_start();
-if (isset($_SESSION['admin_email'])) {
-  header('Location: admin-dashboard.php');
-  exit;
+if (isset($_SESSION['admin_logged_in'])) {
+    header('Location: admin-dashboard.php');
+    exit();
 }
+
+// Get and clear any error message
+$error_message = $_SESSION['login_error'] ?? '';
+unset($_SESSION['login_error']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <table class="main-table">
+  <meta charset="UTF-8">
+  <title>Admin Login - Fitness Tracker</title>
+  <link rel="stylesheet" href="../assets/styles/style.css">
+  <style>
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <table class="main-table">
     <tr>
       <td colspan="2" class="logo-cell">
-      <div class="logo-text">Fitness Tracker</div>
-        <link rel="stylesheet" href="../assets/styles/style.css" />
+        <div class="logo-text">Fitness Tracker</div>
       </td>
     </tr>
     <tr>
       <td colspan="2" class="form-cell">
-      
-         <h2>Admin Login</h2>
-          <form action="../controller/admin-auth.php" method="POST">
+        <h2>Admin Login</h2>
+        <?php if (!empty($error_message)): ?>
+          <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
+        <form action="../controller/admin-auth.php" method="POST">
+          <table>
             <tr>
               <td>Admin Email:</td>
-              <td><input type="email" name="email"></td>
+              <td><input type="email" name="email" required></td>
             </tr>
             <tr>
               <td>Password:</td>
-              <td><input type="password" name="password"></td>
+              <td><input type="password" name="password" required></td>
             </tr>
             <tr>
               <td colspan="2" style="text-align: center;">
@@ -36,7 +55,7 @@ if (isset($_SESSION['admin_email'])) {
             </tr>
             <tr>
               <td colspan="2" class="form-links">
-                <a href="forgotpassword.html">Forgot password?</a><br />
+                <a href="forgotpassword.html">Forgot password?</a><br>
                 <a href="login.php">User Login</a>
               </td>
             </tr>
@@ -45,22 +64,6 @@ if (isset($_SESSION['admin_email'])) {
       </td>
     </tr>
   </table>
-</head>
-<body>
-
-<script>
-  function adminLogin() {
-    const email = document.getElementById("admin-email").value;
-    const password = document.getElementById("admin-password").value;
-
-    if (email === "admin@gmail.com" && password === "admin1234") {
-      localStorage.setItem("loggedInAdmin", email);
-      /*window.location.href = "admin-dashboard.php";*/
-    } else {
-      alert("Invalid credentials!");
-    }
-  }
-</script>
 
 </body>
 </html>
