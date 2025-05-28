@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Goal Settings</title>
+      <link rel="stylesheet" href="../assets/styles/style.css" />
+
 </head>
 <body>
     <h1>Set a New Goal</h1>
@@ -11,7 +13,7 @@
         <p style="color: green;"><?php echo htmlspecialchars($_GET['message']); ?></p>
     <?php endif; ?>
 
-    <form id="goalForm" method="POST" action="../controller/goalcontroller.php">
+    <form id="goalForm" method="POST" action="../controller/goalsettings.php">
         <input type="text" id="title" name="title" placeholder="Title" required />
         <input type="text" id="type" name="type" placeholder="Type" required />
         <input type="number" id="targetValue" name="targetValue" placeholder="Target Value" required />
