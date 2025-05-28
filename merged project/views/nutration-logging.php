@@ -1,16 +1,18 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nutrition Logging</title>
-<link rel="stylesheet" href="../assets/styles/nutrition-logging.css" />
-<link rel="stylesheet" href="../assets/styles/style.css" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nutrition Logging</title>
+  <link rel="stylesheet" href="../assets/styles/nutrition-logging.css" />
+  <link rel="stylesheet" href="../assets/styles/style.css" />
 </head>
 <body>
 
 <h1>Nutrition Logging</h1>
+
 
 <nav>
   <button class="tab-btn active" data-tab="foodDiary">Food Diary</button>
@@ -19,36 +21,29 @@
 
 <section id="foodDiary" class="tab-content active">
   <h2>Food Diary</h2>
-  <form id="foodForm">
-    <select id="commonMeals">
+
+  <form id="foodForm" method="POST" action="../controller/nutrition_logging.php" onsubmit="return validateForm()">
+    <select id="commonMeals" onchange="quickAdd(this)">
       <option value="">-- Quick-add common meal --</option>
-      <option value='{"name":"Banana","calories":105,"protein":1.3,"carbs":27,"fat":0.3}'>Banana</option>
-      <option value='{"name":"Chicken Breast","calories":165,"protein":31,"carbs":0,"fat":3.6}'>Chicken Breast</option>
-      <option value='{"name":"Rice (1 cup)","calories":205,"protein":4.3,"carbs":45,"fat":0.4}'>Rice (1 cup)</option>
+      <option value="Banana|105|1.3|27|0.3">Banana</option>
+      <option value="Chicken Breast|165|31|0|3.6">Chicken Breast</option>
+      <option value="Rice (1 cup)|205|4.3|45|0.4">Rice (1 cup)</option>
     </select>
     <br/>
-    <label>
-      Food Name: <input type="text" id="foodName" required />
-    </label><br/>
-    <label>
-      Calories: <br><input type="number" id="foodCalories" min="1" required />
-    </label><br/>
-    <label>
-      Protein (g): <input type="number" id="foodProtein" min="0" step="0.1" />
-    </label><br/>
-    <label>
-      Carbs (g): <input type="number" id="foodCarbs" min="0" step="0.1" />
-    </label><br/>
-    <label>
-      Fat (g):<br> <input type="number" id="foodFat" min="0" step="0.1" />
-    </label><br/>
+    <label>Food Name: <input type="text" name="foodName" id="foodName" required /></label><br/>
+    <label>Calories: <input type="number" name="foodCalories" id="foodCalories" min="1" required /></label><br/>
+    <label>Protein (g): <input type="number" name="foodProtein" id="foodProtein" step="0.1" min="0" /></label><br/>
+    <label>Carbs (g): <input type="number" name="foodCarbs" id="foodCarbs" step="0.1" min="0" /></label><br/>
+    <label>Fat (g): <input type="number" name="foodFat" id="foodFat" step="0.1" min="0" /></label><br/>
     <button type="submit">Add Food</button>
   </form>
+
   <h3>Food Diary Log:</h3>
-  <div id="foodLog"></div>
+  <!-- You can add code here to show existing logs if you want -->
+
 </section>
 
-<section id="barcodeScanner" class="tab-content">
+<section id="barcodeScanner" class="tab-content" style="display:none;">
   <h2>Barcode Scanner</h2>
   <p>Enter barcode (mock scan):</p>
   <input type="text" id="barcodeInput" placeholder="e.g. 0123456789012" />
@@ -56,7 +51,8 @@
   <div id="scanResult"></div>
 </section>
 
-<script src="../assets/scripts/nutration-logging.js"></script>
+  <script src="../assets/scripts/nutration-logging.js"></script>
+
 
 </body>
 </html>

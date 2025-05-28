@@ -1,17 +1,28 @@
 <?php
-require_once 'dbconnection.php';
+require_once "dbconnection.php";
 
 class GoalModel {
-    private $conn;
+    public static function addGoal($goalData) {
+        global $conn;
 
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
+        $stmt = $conn->prepare("INSERT INTO goals (title, type, targetValue, unit, targetDate) VALUES (?, ?, ?, ?, ?)");
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error);
+        }
 
-    public function createGoal($email, $title, $type, $value, $unit, $date) {
-        $stmt = $this->conn->prepare("INSERT INTO goals (user_email, title, type, target_value, unit, target_date) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$stmt) return false;
-        $stmt->bind_param("sssiss", $email, $title, $type, $value, $unit, $date);
-        return $stmt->execute();
+        $stmt->bind_param(
+            "ssiss",
+            $goalData['title'],
+            $goalData['type'],
+            $goalData['targetValue'],
+            $goalData['unit'],
+            $goalData['targetDate']
+        );
+
+        if (!$stmt->execute()) {
+            die("Execute failed: " . $stmt->error);
+        }
+        $stmt->close();
     }
 }
+?>

@@ -13,7 +13,9 @@
 <body>
   <div class="form-container">
     <h1>Select Your Workout Plan</h1>
-    <form id="workoutForm">
+    <form id="workoutForm" method="POST" action="../controller/workout-plans.php">
+
+
       <label for="program">Choose Program Duration:</label>
       <select id="program" name="program" required>
         <option value="">Select...</option>
@@ -44,6 +46,6 @@
     </div>
   </div>
 
-  <script src="../assets/styles/workout-plans,js"></script>
+  <script src="../assets/styles/workout-plans.js"></script>
 </body>
 </html>

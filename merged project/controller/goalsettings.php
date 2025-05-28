@@ -1,43 +1,27 @@
 <?php
-session_start();
-include_once '../model/goalsettings-model.php'; // your model
-include_once '../dbconnection.php'; // your DB connection
+require_once "../model/goalsettings.php";
 
-// Get POST data
-$title       = trim($_POST['title'] ?? '');
-$type        = trim($_POST['type'] ?? '');
-$targetValue = trim($_POST['targetValue'] ?? '');
-$unit        = trim($_POST['unit'] ?? '');
-$targetDate  = trim($_POST['targetDate'] ?? '');
-$email       = $_SESSION['email'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['title'] ?? '');
+    $type = trim($_POST['type'] ?? '');
+    $targetValue = (int)($_POST['targetValue'] ?? 0);
+    $unit = trim($_POST['unit'] ?? '');
+    $targetDate = $_POST['targetDate'] ?? '';
 
-// Validate inputs
-if (empty($title) || empty($type) || empty($targetValue) || empty($unit) || empty($targetDate) || empty($email)) {
-    $response = ['success' => false, 'message' => 'All fields are required.'];
-    sendJsonResponse($response);
-}
-
-// Save to database using model
-$goalModel = new GoalModel($conn);
-$success = $goalModel->createGoal($email, $title, $type, $targetValue, $unit, $targetDate);
-
-if ($success) {
-    $response = ['success' => true, 'message' => 'Goal created successfully.'];
-} else {
-    $response = ['success' => false, 'message' => 'Failed to create goal.'];
-}
-
-sendJsonResponse($response);
-
-// Utility function to return JSON only for AJAX
-function sendJsonResponse($data) {
-    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-        header('Content-Type: application/json');
-        echo json_encode($data);
+    if (!$title || !$type || !$unit || !$targetDate || $targetValue <= 0) {
+        header("Location: ../views/goalsettings.php?message=" . urlencode("Invalid input data!"));
         exit;
     }
 
-    // fallback for non-AJAX requests (debugging)
-    die($data['message'] ?? 'Unknown error');
+    GoalModel::addGoal([
+        'title' => $title,
+        'type' => $type,
+        'targetValue' => $targetValue,
+        'unit' => $unit,
+        'targetDate' => $targetDate
+    ]);
+
+    header("Location: ../views/goalsettings.php?message=" . urlencode("Goal created successfully!"));
+    exit;
 }
+?>

@@ -1,33 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("goal-form");
+document.getElementById('goalForm').addEventListener('submit', function(e) {
+  const title = this.title.value.trim();
+  const type = this.type.value.trim();
+  const targetValue = this.targetValue.value;
+  const unit = this.unit.value.trim();
+  const targetDate = this.targetDate.value;
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+  if (!title || !type || !unit || !targetDate) {
+    alert("সব ফিল্ড অবশ্যই পূরণ করতে হবে।");
+    e.preventDefault();
+    return;
+  }
 
-        const formData = new FormData(form);
-fetch("goalsettings-controller.php", {
-    method: "POST",
-    body: new FormData(form)
-})
-.then(res => res.text())
-.then(text => {
-    console.log("Raw response:", text);
-    try {
-        const data = JSON.parse(text);
-        if (data.success) {
-            alert("Goal created!");
-            form.reset();
-        } else {
-            alert("Error: " + (data.error || "Unknown"));
-        }
-    } catch (e) {
-        alert("Invalid JSON response from server.");
-        console.error("JSON parse error", e);
-    }
-})
-.catch(err => {
-    alert("Fetch error: " + err);
-});
-
-    });
+  if (isNaN(targetValue) || targetValue <= 0) {
+    alert("Target Value অবশ্যই ধনাত্মক সংখ্যা হতে হবে।");
+    e.preventDefault();
+  }
 });
