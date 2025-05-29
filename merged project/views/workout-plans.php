@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Workout Plan Form</title>
   <link rel="stylesheet" href="../assets/styles/workout-plans.css" />
-    <link rel="stylesheet" href="../assets/styles/styles.css" />
-
-
- 
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
 </head>
 <body>
   <div class="form-container">
     <h1>Select Your Workout Plan</h1>
+
+    <?php if (isset($_GET['message'])): ?>
+      <p style="color: green;"><?php echo htmlspecialchars($_GET['message']); ?></p>
+    <?php endif; ?>
+    
     <form id="workoutForm" method="POST" action="../controller/workout-plans.php">
-
-
       <label for="program">Choose Program Duration:</label>
       <select id="program" name="program" required>
         <option value="">Select...</option>
@@ -39,13 +39,8 @@
 
       <button type="submit">Start Program</button>
     </form>
-
-    <div id="confirmation" class="hidden">
-      <h2>Program Scheduled!</h2>
-      <p id="programDetails"></p>
-    </div>
   </div>
+    <script src="../assets/scripts/workout-plans.js"></script>
 
-  <script src="../assets/styles/workout-plans.js"></script>
 </body>
 </html>

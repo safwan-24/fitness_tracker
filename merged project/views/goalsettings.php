@@ -21,5 +21,7 @@
         <input type="date" id="targetDate" name="targetDate" required />
         <button type="submit">Create Goal</button>
     </form>
+      <script src="../assets/scripts/goalsettings.js"></script>
+
 </body>
 </html>

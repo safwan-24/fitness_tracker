@@ -1,5 +1,5 @@
 <?php
-require_once "dbconnection.php"; // Database connection
+require_once "dbconnection.php";
 
 class WorkoutPlan {
     public static function add($data) {
@@ -22,3 +22,4 @@ class WorkoutPlan {
         return true;
     }
 }
+?>
