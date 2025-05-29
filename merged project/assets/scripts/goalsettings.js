@@ -1,12 +1,26 @@
 document.getElementById('goalForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
+  const title = this.title.value.trim();
+  const type = this.type.value.trim();
+  const targetValue = parseInt(this.targetValue.value, 10);
+  const unit = this.unit.value.trim();
+  const targetDate = this.targetDate.value;
+
+  const msgDiv = document.getElementById('message');
+
+  if (!title || !type || !unit || !targetDate || isNaN(targetValue) || targetValue <= 0) {
+    msgDiv.style.color = 'red';
+    msgDiv.textContent = 'Please fill out all fields correctly.';
+    return;
+  }
+
   const data = {
-    title: this.title.value.trim(),
-    type: this.type.value.trim(),
-    targetValue: parseInt(this.targetValue.value, 10),
-    unit: this.unit.value.trim(),
-    targetDate: this.targetDate.value
+    title,
+    type,
+    targetValue,
+    unit,
+    targetDate
   };
 
   fetch(this.action, {
@@ -16,7 +30,6 @@ document.getElementById('goalForm').addEventListener('submit', function(e) {
   })
   .then(response => response.json())
   .then(result => {
-    const msgDiv = document.getElementById('message');
     if (result.success) {
       msgDiv.style.color = 'green';
       msgDiv.textContent = 'Goal created successfully!';
@@ -27,6 +40,7 @@ document.getElementById('goalForm').addEventListener('submit', function(e) {
     }
   })
   .catch(error => {
-    alert('Network error: ' + error.message);
+    msgDiv.style.color = 'red';
+    msgDiv.textContent = 'Network error: ' + error.message;
   });
 });
