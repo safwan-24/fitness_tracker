@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Goal Settings</title>
-      <link rel="stylesheet" href="../assets/styles/style.css" />
-
+    <link rel="stylesheet" href="../assets/styles/style.css" />
 </head>
 <body>
     <h1>Set a New Goal</h1>
     
-    <?php if (isset($_GET['message'])): ?>
-        <p style="color: green;"><?php echo htmlspecialchars($_GET['message']); ?></p>
-    <?php endif; ?>
+    <div id="message" style="color: green;"></div>
 
     <form id="goalForm" method="POST" action="../controller/goalsettings.php">
         <input type="text" id="title" name="title" placeholder="Title" required />
@@ -21,7 +18,7 @@
         <input type="date" id="targetDate" name="targetDate" required />
         <button type="submit">Create Goal</button>
     </form>
-      <script src="../assets/scripts/goalsettings.js"></script>
 
+    <script src="../assets/scripts/goalsettings.js"></script>
 </body>
 </html>

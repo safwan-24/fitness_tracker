@@ -7,7 +7,7 @@ class GoalModel {
 
         $stmt = $conn->prepare("INSERT INTO goals (title, type, targetValue, unit, targetDate) VALUES (?, ?, ?, ?, ?)");
         if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
+            throw new Exception("Prepare failed: " . $conn->error);
         }
 
         $stmt->bind_param(
@@ -20,7 +20,7 @@ class GoalModel {
         );
 
         if (!$stmt->execute()) {
-            die("Execute failed: " . $stmt->error);
+            throw new Exception("Execute failed: " . $stmt->error);
         }
         $stmt->close();
     }
