@@ -39,7 +39,6 @@
   </form>
 
   <h3>Food Diary Log:</h3>
-  <!-- You can add code here to show existing logs if you want -->
 
 </section>
 

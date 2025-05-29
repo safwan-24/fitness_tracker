@@ -86,7 +86,6 @@ if (!isset($_SESSION['email'])) {
     <a href="./nutration-logging.php">Open</a>
   </div>
 
-  <!-- New Device Sync Section -->
   <div class="section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/imgs/devicesync.jpg')">
     <h2>Device Sync</h2>
     <p>Connect your fitness devices and sync data.</p>

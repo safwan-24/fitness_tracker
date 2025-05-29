@@ -24,7 +24,6 @@ if (!isset($_SESSION['email'])) {
     </tr>
     <tr>
       <td colspan="2" class="form-cell">
-        <!-- Contact Form -->
         <form id="contactForm" class="auth-form" method="POST" action="../controller/contact_submit.php">
           <h2>Contact Us</h2>
           <table class="form-table">

@@ -19,14 +19,12 @@ include '../model/profile.php';
         <p class="error"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
-    <!-- View Profile -->
     <div class="view-profile">
         <h2>View Profile</h2>
         <p><strong>Name:</strong> <?= htmlspecialchars($user['name'] ?? '') ?></p>
         <p><strong>Email:</strong> <?= htmlspecialchars($user['email'] ?? '') ?></p>
     </div>
 
-    <!-- Edit Profile -->
     <form method="post" action="../controller/profile.php">
         <input type="hidden" name="updateProfile" value="1">
         <label for="name">Name:</label>
@@ -36,7 +34,6 @@ include '../model/profile.php';
         <button type="submit">Save Changes</button>
     </form>
 
-    <!-- Update Password -->
     <form method="post" action="../controller/profile.php">
         <input type="hidden" name="updatePassword" value="1">
         <label for="currentPassword">Current Password:</label>

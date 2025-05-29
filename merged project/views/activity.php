@@ -47,7 +47,6 @@ if (!isset($_SESSION['email'])) {
         </tr>
       </thead>
       <tbody id="logResults">
-        <!-- Filtered logs will be shown here -->
       </tbody>
     </table>
   </div>
